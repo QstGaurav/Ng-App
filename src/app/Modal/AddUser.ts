@@ -8,7 +8,7 @@ export class User{
         public Age:number,
         public Gender:string,
         public Email:string,
-        public Notes:string,
+        // public Notes:string
 
     ) {          
     }
