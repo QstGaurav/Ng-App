@@ -1,0 +1,23 @@
+<p class="p-1">
+  Dashboard component!! {{ mssg }}
+  <button class="btn btn-sm p-1" style="align-items: right; background-color: rgb(223, 98, 136); color: rgb(253, 253, 242)" (click)="getAsyncDatastream()">Data stream</button
+  >&nbsp;
+  <button class="btn btn-sm p-1" style="align-items: right; background-color: rgb(223, 98, 136); color: rgb(253, 253, 242)" (click)="removeData()">Remove Data</button>&nbsp;
+  <button class="btn btn-sm p-1" style="align-items: right; background-color: rgb(98, 162, 223); color: yellow" (click)="onSubscribe()">Subscribe for more Adv</button>
+</p>
+
+@if(data.length != 0) {
+<table>
+  <tr>
+    <th>Sno.</th>
+    <th>Value</th>
+  </tr>
+  @for(x of data ; track x ; let i = $index){
+  <tr>
+    <td>{{ i + 1 }}</td>
+    <td>{{ x }}</td>
+  </tr>
+  }
+</table>
+}
+<app-customer [customerShowUser]="ShowUser"></app-customer>

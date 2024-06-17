@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.sidebar {
+    background-size: cover;
+    background-position: center;
+    margin: 1rem;
+    border-radius: 10px;
+    box-shadow: 2px 8px 19px rgba(0, 0, 0, 0.1), -2px -8px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .sidebar .nav-item .nav-link {
+        font-weight: 600;
+        color: #fff !important;
+    }
+
+    .sidebar .nav-link.active {
+        background: linear-gradient(to bottom, #1ec065, #0d6936);
+        margin: 0 0.6rem;
+        width: 85% !important;
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        box-shadow: 0 7px 20px #1ec06547;
+    }
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+}

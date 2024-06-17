@@ -1,0 +1,45 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-8">
+      <p>{{ customerShowUser }} Table with mail Id: {{ displayMail }}</p>
+      <input class="m-2" type="text" placeholder="Search" [(ngModel)]="searchData" (input)="getSearchData()">
+      <button style="font-weight: 700;border: groove;background-color: beige;" routerLink="/home" [queryParams]="{search:searchData}" (click)="getSearchData()">Search</button>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Operation</th>
+          </tr>
+        </thead>
+        @for(x of filteredUser; track x ;let i = $index){
+        <tbody>
+          <th scope="row">{{i+1}}</th>
+          <th scope="row">{{x.id}}</th>
+          <td>{{x.name}}</td>
+          <td>{{x.age}}</td>
+          <td><button class="btn btn-outline-info btn-sm" [routerLink]="'/home/customer/edit/' +x.id" >Edit</button></td>
+        </tbody>
+        }
+      </table>
+    </div>
+    <div class="col-1">
+      <!-- <div>time</div> -->
+      <div class="card mt-5" style="width: 12rem">
+        <img src="" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">Ad</h5>
+          <p class="card-text">Some Advertisement.</p>
+          <input type="text" placeholder="Enter mail" style="width: 98%" #inputMail (input)="addUserMail(inputMail.value)" />
+          <button class="mt-3 btn btn-primary btn-sm" [disabled]="!inputMail.value" (click)="displaySignupMail()">Subscribe:</button>
+        </div>
+        <div class="card-body">
+          <a href="#" class="card-link">Go to</a>
+          <a href="#" class="card-link">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
