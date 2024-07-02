@@ -1,5 +1,6 @@
 <div>
   <a class="p-4" style="font-size: 22px" routerLink="../">Back</a>
+  <button class="btn btn-outline-secondary" (click)="onSubjectButtonClick()">check subject</button>
   <div class="container p-4 mt-2">
     <div class="content">
       <img src="../../assets\image.png" alt="header-image" class="cld-responsive" style="height: 5%" />
@@ -30,3 +31,8 @@
     </div>
   </div>
 </div>
+@for(x of data;track x ;){
+<div>
+  {{x}}
+</div>
+}

@@ -1,8 +1,9 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { User } from '../../Modal/AddUser';
+import { UserDataService } from '../../../Services/UserData.service';
 
 @Component({
   selector: 'app-rform2',
@@ -12,6 +13,9 @@ import { User } from '../../Modal/AddUser';
   imports: [ReactiveFormsModule, RouterModule, NgFor],
 })
 export class Rform2Component implements OnInit {
+
+  userData = inject (UserDataService);
+  data:[]=[];
   reactiveForm!: FormGroup;
   modal!:User;
   ngOnInit(): void {
@@ -40,5 +44,16 @@ export class Rform2Component implements OnInit {
   onNoteDelete(index: number) {
     (<FormArray>this.reactiveForm.get('notes')).removeAt(index);
   }
-
+  onSubjectButtonClick() {
+    this.userData.getUserBySubject().subscribe({
+      next: (val:any) => {
+        this.data=val;
+      },
+      error:(err)=> {
+        // alert(err.message);
+        console.log("error in api");
+      }
+    });
+    }
+  
 }

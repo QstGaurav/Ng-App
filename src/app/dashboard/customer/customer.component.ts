@@ -4,24 +4,39 @@ import { SubscribeService } from '../../../Services/Subscribe.service';
 import { UserModal } from '../../Modal/User';
 import {  ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserDataService } from '../../../Services/UserData.service';
 
 @Component({
   selector: 'app-customer',
   standalone: true,
-  imports: [FormsModule,RouterModule,AboutComponent],
+  imports: [FormsModule,RouterModule,AboutComponent,HttpClientModule],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
-  providers: [SubscribeService, UserModal],
+  providers: [SubscribeService, UserModal,UserDataService],
 })
 export class CustomerComponent implements OnInit{
     
-  // constructor(private subscribeService:SubscribeService){
+  // constructor(private UserData:UserDataService){
   // }
+  constructor() {
+    this.getUserData();    
+  }
+  
   searchData!:string;
+  
   subscribeService = inject(SubscribeService);
+  UserData = inject(UserDataService);
   User = inject(UserModal);
+  httpClient:HttpClient = inject (HttpClient);
+
+  UserDataValue = [];
   userDetails = this.User.data.users;
   filteredUser:any = this.userDetails;
+
+  //user Data service call
+ 
+
 
   @Input() customerShowUser = '';
   // @ViewChild ('inputMail') inputMailEl !:ElementRef;
@@ -55,7 +70,7 @@ export class CustomerComponent implements OnInit{
     //   this.router.navigateByUrl('');
     // });
     
-
+    // this.getUserData();
   }
   getSearchData(){
     //Getting value from Query Param
@@ -67,5 +82,21 @@ export class CustomerComponent implements OnInit{
       );
   }
 
+  getUserData(){
+    // this.UserData.getUser().subscribe((response)=>{
+    //   this.UserDataValue = response;
+    //   // console.log(response);
+    // })
+    //Alternative with error handling
+    this.UserData.getUserBySubject().subscribe({
+      next: (val) => {
+        console.log(val);
+      },
+      error:(err)=> {
+        // alert(err.message);
+        console.log("error in api");
+      }
+    });
+    }
 
 }
