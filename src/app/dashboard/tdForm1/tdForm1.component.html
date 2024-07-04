@@ -1,3 +1,8 @@
-<p>
-  Form 1  works!
-</p>
+<p>Form 1 works!</p>
+<button class="btn btn-outline-secondary" (click)="onSubjectButtonClick()">Click1 : next</button>
+<button class="btn btn-outline-secondary m-3" (click)="onClick2()">Click 2 : subscribe</button>
+@for(x of userData; track x;) {
+<div>
+  {{ x }}
+</div>
+}

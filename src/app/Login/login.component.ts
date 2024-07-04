@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, Injectable, OnInit, inject, signal } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../Services/AuthService.service';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,20 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+
+export class LoginComponent implements OnInit {
+  AuthCheck = inject(AuthService);
+  router = inject (Router);
+constructor() {
+  this.AuthCheck.IsAuthenticated.next(false) ;
+
+}
+ngOnInit(): void {
+}
+
+onGuestLogin() {
+  this.AuthCheck.IsAuthenticated.next(true) ;
+this.router.navigateByUrl("/home");
+}
 
 }

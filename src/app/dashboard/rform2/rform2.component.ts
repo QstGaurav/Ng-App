@@ -13,11 +13,14 @@ import { UserDataService } from '../../../Services/UserData.service';
   imports: [ReactiveFormsModule, RouterModule, NgFor],
 })
 export class Rform2Component implements OnInit {
+  /**
+   *
+   */
+  userData = inject(UserDataService);
+  data: [] = [];
 
-  userData = inject (UserDataService);
-  data:[]=[];
   reactiveForm!: FormGroup;
-  modal!:User;
+  modal!: User;
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       name: new FormControl(null, Validators.required),
@@ -29,12 +32,15 @@ export class Rform2Component implements OnInit {
     });
   }
   get notes(): FormArray {
-    return <FormArray>this.reactiveForm.get('notes') ;
+    return <FormArray>this.reactiveForm.get('notes');
   }
   onForm2Submit() {
     this.modal = this.reactiveForm.value;
-    console.log(this.modal);
-    this.reactiveForm.reset();
+    console.log(this.reactiveForm);
+    if(this.reactiveForm.invalid){
+      this.reactiveForm.markAllAsTouched();
+    }
+    // this.reactiveForm.reset();
     (<FormArray>this.reactiveForm.get('notes')).clear();
   }
   onAddNotes() {
@@ -45,15 +51,15 @@ export class Rform2Component implements OnInit {
     (<FormArray>this.reactiveForm.get('notes')).removeAt(index);
   }
   onSubjectButtonClick() {
-    this.userData.getUserBySubject().subscribe({
-      next: (val:any) => {
-        this.data=val;
+    this.userData.getUser().subscribe({
+      next: (val: any) => {
+        this.data = val;
+        // console.log(val);
       },
-      error:(err)=> {
+      error: (err: any) => {
         // alert(err.message);
-        console.log("error in api");
-      }
+        console.log('error in api');
+      },
     });
-    }
-  
+  }
 }

@@ -20,7 +20,7 @@ export class CustomerComponent implements OnInit{
   // constructor(private UserData:UserDataService){
   // }
   constructor() {
-    this.getUserData();    
+    // this.getUserData();    
   }
   
   searchData!:string;
@@ -30,7 +30,7 @@ export class CustomerComponent implements OnInit{
   User = inject(UserModal);
   httpClient:HttpClient = inject (HttpClient);
 
-  UserDataValue = [];
+  UserDataValue:[] = [];
   userDetails = this.User.data.users;
   filteredUser:any = this.userDetails;
 
@@ -88,15 +88,16 @@ export class CustomerComponent implements OnInit{
     //   // console.log(response);
     // })
     //Alternative with error handling
-    this.UserData.getUserBySubject().subscribe({
-      next: (val) => {
-        console.log(val);
-      },
-      error:(err)=> {
-        // alert(err.message);
-        console.log("error in api");
-      }
-    });
+    // this.UserData.getUserBySubject().subscribe({
+    //   next: (val:any) => {
+    //     // console.log(val);
+    //     this.UserDataValue = val;
+    //   },
+    //   error:(err:any)=> {
+    //     // alert(err.message);
+    //     console.log("error in api");
+    //   }
+    // });
     }
 
 }

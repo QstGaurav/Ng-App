@@ -1,16 +1,1 @@
-<div>
-    <!-- receiving data from navbar @output-->
-    <app-navbar (sendMessageEvent) ="receiveActiveUser($event)"></app-navbar>
-        <div id="container">
-            <div class="row">
-                <div class="col-2">
-                    <app-sidebar></app-sidebar>    
-                </div>
-                <div class="col-10">
-                    <!-- sending data to dashboard @input -->
-                    <app-dashboard [ShowUser]="ActiveUser"></app-dashboard>
-
-                </div>
-            </div>
-        </div>
-</div>
+<app-dashboard [ShowUser]="ActiveUser"></app-dashboard>
