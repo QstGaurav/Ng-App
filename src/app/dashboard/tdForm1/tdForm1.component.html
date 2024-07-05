@@ -6,3 +6,14 @@
   {{ x }}
 </div>
 }
+
+<button class="btn btn-outline-success" (click)="onToasterClick()">toaster</button>
+
+@if(toasterActive){
+
+  <p *ngIf="toasterActive">Form Success</p>
+}
+@else{
+  <p *ngIf="toasterActive">Failed</p>
+}
+

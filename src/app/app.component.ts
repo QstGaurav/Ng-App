@@ -13,7 +13,8 @@ import { AuthService } from '../Services/AuthService.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DashboardComponent, NavbarComponent, SidebarComponent, CustomerComponent, LoginComponent, HomepageComponent],
+  imports: [RouterOutlet, DashboardComponent, NavbarComponent, SidebarComponent, CustomerComponent, LoginComponent, HomepageComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [UserDataService, LoginComponent],

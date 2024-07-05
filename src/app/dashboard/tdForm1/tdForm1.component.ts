@@ -1,18 +1,30 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { UserDataService } from '../../../Services/UserData.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tdForm1',
   templateUrl: './tdForm1.component.html',
   styleUrls: ['./tdForm1.component.css'],
-  standalone:true
+  standalone:true,
+  imports:[ FormsModule,CommonModule,]
 })
 export class TdForm1Component implements OnInit {
+  
   constructor(private UserData : UserDataService) {
-    
+    console.log(this.warningDisplay());
   }
+  _userDataService=inject(UserDataService);
+  _router = inject(Router);
   userData: [] = [];
-  ngOnInit() {}
+  toasterActive!:boolean;
+  warningDisplay = signal();
+  ngOnInit() {
+
+  }
   randomNumber= 0;
   onSubjectButtonClick() {
     // this.UserData.getUserBySubject().subscribe({
@@ -31,5 +43,8 @@ export class TdForm1Component implements OnInit {
         this.userData = val;
       }
     });
+  }
+  onToasterClick(){
+         
   }
 }
