@@ -4,13 +4,17 @@ import { SubscribeService } from '../../../Services/Subscribe.service';
 import { UserModal } from '../../Modal/User';
 import {  ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserDataService } from '../../../Services/UserData.service';
 
 @Component({
   selector: 'app-customer',
   standalone: true,
-  imports: [FormsModule,RouterModule,AboutComponent,HttpClientModule],
+  imports: [FormsModule,RouterModule,AboutComponent,
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
   providers: [SubscribeService, UserModal,UserDataService],
